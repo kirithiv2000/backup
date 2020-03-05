@@ -1,19 +1,44 @@
-def listshuffle(a):
-    a[0],a[1],a[2]=a[2],a[1],a[0]
-    return a
-def righttoleft(a):
-    for i in range(len(a)):
-        a[i][0],a[i][2]=a[i][2],a[i][0]
-    return a
-def listd(a):
-    for i in range(2):
-        print(righttoleft(a))
-        print(listshuffle(a))
-def transpose(a):
-    a[0][0],a[2][2]=a[2][2],a[0][0]
-    a[0][1],a[1][2],a[1][0],a[2][1]=a[1][2],a[0][1],a[2][1],a[1][0]
-j=[i for i in range(1,10)]
-a=[[j[7], j[0], j[5]], [j[2], j[4], j[6]], [j[3], j[8], j[1]]]
-listd(a)
-transpose(a)
-listd(a)
+w=[]
+for i in range(31):
+    w.append([0 for i in range(31)])
+w=[[0,0,0],[0,0,0],[0,0,0]]
+w=[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+w=[[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
+w=[[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
+
+turn=0
+side=len(w)//2
+start=25
+
+while 1:
+
+    if w[turn][side]==0:
+        changes=0
+        w[turn][side]=start
+
+        if turn == 0:
+            turn =len(w)-1
+        else:
+            turn -=1
+        if side ==len(w)-1:
+            side =0
+        else:
+            side+=1
+        start +=1
+    else:
+        if turn ==len(w)-1:
+            turn =1
+        elif turn ==len(w)-2:
+            turn =0
+        else:
+            turn +=2
+        if side !=0:
+            side -=1
+        else:
+            side +=len(w)-1
+        changes+=1
+        if changes>5:
+            break
+
+for i in w:
+    print(i)
